@@ -25,13 +25,13 @@ class PlaceController extends ApiController
 
     public function getCheckins($userId)
     {
-        $place = Place::find($userId);
+        $user = User::find($userId);
 
-        if (! $place) {
-            return $this->errorNotFound('Place not found');
+        if (! $user) {
+            return $this->errorNotFound('User not found');
         }
 
-        return $this->respondWithCollection($place->checkins, new CheckinTransformer);
+        return $this->respondWithCollection($user->checkins, new CheckinTransformer);
     }
 
     public function uploadImage($placeId)
